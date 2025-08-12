@@ -1,21 +1,25 @@
-"""Example plugins have been moved to entity-plugin-examples package.
+"""Entity Plugin Examples - Example plugins for the Entity Framework.
 
-This module provides backward compatibility. Please update your imports to use
-the new package directly.
-
-Migration:
-    Old: from entity.plugins.examples import CalculatorPlugin
-    New: from entity_plugin_examples import CalculatorPlugin
+This package contains example plugins demonstrating various Entity Framework features.
 """
 
-import warnings
+# Import all plugins from their modules
+from .calculator import Calculator as CalculatorPlugin
+from .input_reader import InputReader as InputReaderPlugin
+from .keyword_extractor import KeywordExtractor as KeywordExtractorPlugin
+from .output_formatter import OutputFormatter as OutputFormatterPlugin
+from .reason_generator import ReasonGenerator as ReasonGeneratorPlugin
+from .static_reviewer import StaticReviewer as StaticReviewerPlugin
+from .typed_example_plugin import TypedExamplePlugin
 
-# Import from compatibility layer
-from entity.plugins.examples_compat import *  # noqa: F401, F403
+__all__ = [
+    "CalculatorPlugin",
+    "InputReaderPlugin",
+    "KeywordExtractorPlugin",
+    "OutputFormatterPlugin",
+    "ReasonGeneratorPlugin",
+    "StaticReviewerPlugin",
+    "TypedExamplePlugin",
+]
 
-warnings.warn(
-    "The entity.plugins.examples module is deprecated. "
-    "Please install and import from entity-plugin-examples instead.",
-    DeprecationWarning,
-    stacklevel=2,
-)
+__version__ = "0.1.0"
