@@ -60,11 +60,19 @@ def test_patterns_imports():
 
 
 def test_specialized_imports():
-    """Test that specialized module exists even if empty."""
+    """Test that specialized module exists and exports specialized examples."""
     import entity_plugin_examples.specialized
     
-    # Should be importable but empty for now
-    assert entity_plugin_examples.specialized.__all__ == []
+    # Should be importable and contain the specialized showcases from Story 9
+    expected_exports = [
+        # Code Reviewer
+        "CodeReviewerExample", "StaticAnalysisPlugin", "CodeMetricsPlugin", "SecurityScanPlugin",
+        # Research Assistant  
+        "ResearchAssistantExample", "SourceGathererPlugin", "FactCheckerPlugin", "SynthesizerPlugin",
+        # Customer Service
+        "CustomerServiceExample", "IntentClassifierPlugin", "KnowledgeBasePlugin", "ResponseGeneratorPlugin"
+    ]
+    assert entity_plugin_examples.specialized.__all__ == expected_exports
 
 
 def test_plugin_functionality():
