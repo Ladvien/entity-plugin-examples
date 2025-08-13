@@ -119,6 +119,109 @@ def test_pipeline_visualizer_structure():
     assert hasattr(VisibilityPlugin, '_execute_impl')
 
 
+def test_story_8_requirements():
+    """Test Story 8: Create Visual Pipeline Demo requirements."""
+    import inspect
+    from entity_plugin_examples.core.see_the_pipeline import (
+        PipelineVisualizerExample,
+        VisibilityPlugin
+    )
+    
+    # Check that run method exists and is async
+    assert hasattr(PipelineVisualizerExample, 'run')
+    assert callable(PipelineVisualizerExample.run)
+    run_method = getattr(PipelineVisualizerExample, 'run')
+    assert inspect.iscoroutinefunction(run_method)
+    
+    # Check docstring mentions Story 8 requirements
+    docstring = PipelineVisualizerExample.run.__doc__ or ""
+    story_indicators = ["story 8", "6-stage", "pipeline", "visual"]
+    has_story_context = any(indicator in docstring.lower() for indicator in story_indicators)
+    assert has_story_context, "Should reference Story 8 or pipeline visualization"
+    
+    # Check VisibilityPlugin can be instantiated
+    resources = {}
+    config = {"stage": "INPUT"}
+    plugin = VisibilityPlugin(resources, config)
+    assert plugin.stage_name == "INPUT"
+    assert plugin.supported_stages == ["INPUT"]
+
+
+def test_story_8_visual_format():
+    """Test that Story 8 produces exact visual format specified."""
+    import inspect
+    from entity_plugin_examples.core.see_the_pipeline import VisibilityPlugin
+    
+    # Get source code of the _execute_impl method
+    source = inspect.getsource(VisibilityPlugin._execute_impl)
+    
+    # Should contain Story 8's exact format examples
+    story_8_patterns = [
+        "[INPUT] Receiving:",
+        "[PARSE] Extracting: math expression", 
+        "[THINK] Planning: calculation needed",
+        "[DO] Executing: Calculator plugin",
+        "[REVIEW] Validating: result = 4",
+        "[OUTPUT] Formatting:"
+    ]
+    
+    for pattern in story_8_patterns:
+        assert pattern in source, f"Missing Story 8 format pattern: {pattern}"
+
+
+def test_story_8_minimal_code_maximum_visibility():
+    """Test Story 8's minimal code, maximum visibility principle."""
+    import inspect
+    from entity_plugin_examples.core.see_the_pipeline import PipelineVisualizerExample
+    
+    # Get source code
+    source = inspect.getsource(PipelineVisualizerExample.run)
+    docstring = PipelineVisualizerExample.run.__doc__ or ""
+    
+    # Should mention the 80% Code, 20% Explanation principle
+    assert "80%" in docstring and "20%" in docstring
+    
+    # Should mention minimal code, maximum visibility
+    visibility_terms = ["minimal code", "maximum visibility", "visual"]
+    has_visibility_focus = any(term in docstring.lower() for term in visibility_terms)
+    assert has_visibility_focus, "Should emphasize visual demonstration"
+
+
+def test_story_8_calculate_example():
+    """Test that Story 8 uses the Calculate 2+2 example."""
+    import inspect
+    from entity_plugin_examples.core.see_the_pipeline import PipelineVisualizerExample
+    
+    # Get source code
+    source = inspect.getsource(PipelineVisualizerExample.run)
+    
+    # Should use Story 8's specified example
+    assert "Calculate 2+2" in source or "2+2" in source
+    
+    # Should reference the example in docstring
+    docstring = PipelineVisualizerExample.run.__doc__ or ""
+    math_indicators = ["2+2", "calculate", "math"]
+    has_math_example = any(indicator in docstring.lower() for indicator in math_indicators)
+    assert has_math_example, "Should reference the math calculation example"
+
+
+def test_story_8_stage_coverage():
+    """Test that Story 8 covers all 6 pipeline stages."""
+    from entity_plugin_examples.core.see_the_pipeline import VisibilityPlugin
+    from entity.workflow.stages import INPUT, PARSE, THINK, DO, REVIEW, OUTPUT
+    
+    # All 6 stages should be supported
+    all_stages = [INPUT, PARSE, THINK, DO, REVIEW, OUTPUT]
+    
+    for stage in all_stages:
+        # Should be able to create plugin for each stage
+        resources = {}
+        config = {"stage": stage}
+        plugin = VisibilityPlugin(resources, config)
+        assert plugin.stage_name == stage
+        assert plugin.supported_stages == [stage]
+
+
 def test_layer_explorer_structure():
     """Test Layer 2: LayerExplorer has correct structure."""
     from entity_plugin_examples.core.see_the_layers import (

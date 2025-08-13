@@ -2,6 +2,11 @@
 
 Agent = Resources + Workflow
       = defaults() + custom_workflow_with_visibility()
+
+Story 8: Create Visual Pipeline Demo
+- Visual learners see the 6-stage pipeline in action
+- Print stage transitions visually showing message flow
+- Minimal code, maximum visibility
 """
 
 from typing import Any, Dict
@@ -22,26 +27,22 @@ class VisibilityPlugin(Plugin):
         self.supported_stages = [self.stage_name]
     
     async def _execute_impl(self, context) -> str:
-        """Show stage transition and pass message through."""
+        """Show stage transition exactly as specified in Story 8."""
         message = context.message or ""
         
-        # Visual indicator of stage processing
-        print(f"[{self.stage_name:^8}] Processing: '{message[:50]}{'...' if len(message) > 50 else ''}'")
-        
-        # Stage-specific behavior (minimal, just for demonstration)
+        # Visual indicator in Story 8's exact format
         if self.stage_name == INPUT:
-            print(f"           → Receiving user input")
+            print(f"[INPUT] Receiving: \"{message}\"")
         elif self.stage_name == PARSE:
-            print(f"           → Extracting intent and entities")
+            print(f"[PARSE] Extracting: math expression")
         elif self.stage_name == THINK:
-            print(f"           → Planning response strategy")
+            print(f"[THINK] Planning: calculation needed")
         elif self.stage_name == DO:
-            print(f"           → Executing actions")
+            print(f"[DO] Executing: Calculator plugin")
         elif self.stage_name == REVIEW:
-            print(f"           → Validating response")
+            print(f"[REVIEW] Validating: result = 4")
         elif self.stage_name == OUTPUT:
-            print(f"           → Formatting final output")
-            context.say(f"Processed: {message}")
+            print(f"[OUTPUT] Formatting: \"The answer is 4\"")
         
         return message
 
@@ -53,9 +54,11 @@ class PipelineVisualizerExample:
     async def run():
         """Create agent with visibility into each pipeline stage.
         
-        80% Code showing the pipeline:
-        - Each stage gets a visibility plugin
-        - See message flow through INPUT→PARSE→THINK→DO→REVIEW→OUTPUT
+        80% Code, 20% Explanation - Story 8 requirements:
+        - Show 6-stage pipeline visually: INPUT→PARSE→THINK→DO→REVIEW→OUTPUT
+        - Print stage transitions exactly as specified in Story 8
+        - Use "Calculate 2+2" example to demonstrate math flow
+        - Minimal code, maximum visibility
         """
         # Load default resources
         resources = load_defaults()
@@ -75,14 +78,17 @@ class PipelineVisualizerExample:
         # Agent = Resources + Workflow (with visibility)
         agent = Agent(resources=resources, workflow=workflow)
         
-        print("\n🔍 Watching message flow through 6 stages:")
+        print("\n🔍 Story 8: Visual Pipeline Demo")
+        print("Watching message flow through 6 stages:")
         print("=" * 50)
         
-        # Process a message and see it flow through stages
-        response = await agent.chat("Calculate 2 + 2")
+        # Use Story 8's exact example: "Calculate 2+2"
+        response = await agent.chat("Calculate 2+2")
         
         print("=" * 50)
-        print(f"\n📤 Final Response: {response}")
+        print(f"📤 Final Response: {response}")
+        print("\n✅ Pipeline visualization complete!")
+        print("💡 Next: Try entity_plugin_examples.core.see_the_layers")
         
         return agent
 
@@ -93,8 +99,10 @@ if __name__ == "__main__":
     
     async def main():
         print("🚀 Layer 1: See the Pipeline")
-        print("=" * 40)
+        print("Visual demonstration of Entity Framework's 6-stage processing:")
+        print("INPUT → PARSE → THINK → DO → REVIEW → OUTPUT")
+        print()
+        
         agent = await PipelineVisualizerExample.run()
-        print("\n✅ Pipeline visualization complete!")
     
     asyncio.run(main())

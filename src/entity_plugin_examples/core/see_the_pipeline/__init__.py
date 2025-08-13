@@ -4,6 +4,6 @@ Shows how messages flow through the Entity pipeline:
 INPUT → PARSE → THINK → DO → REVIEW → OUTPUT
 """
 
-from .pipeline_visualizer import PipelineVisualizerExample
+from .pipeline_visualizer import PipelineVisualizerExample, VisibilityPlugin
 
-__all__ = ["PipelineVisualizerExample"]
+__all__ = ["PipelineVisualizerExample", "VisibilityPlugin"]
