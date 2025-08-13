@@ -1,13 +1,13 @@
 from __future__ import annotations
 
 from entity.plugins.base import Plugin
-from entity.workflow.executor import WorkflowExecutor
+from entity.workflow.stages import REVIEW
 
 
 class StaticReviewer(Plugin):
     """Pass-through REVIEW stage plugin."""
 
-    supported_stages = [WorkflowExecutor.REVIEW]
+    supported_stages = [REVIEW]
 
     async def _execute_impl(self, context) -> str:  # noqa: D401
         return context.message or ""

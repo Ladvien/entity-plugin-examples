@@ -4,7 +4,7 @@ import ast
 import operator
 
 from entity.plugins.tool import ToolPlugin
-from entity.workflow.executor import WorkflowExecutor
+from entity.workflow.stages import DO
 
 _ALLOWED_OPS = {
     ast.Add: operator.add,
@@ -33,7 +33,7 @@ def _eval(node):
 class Calculator(ToolPlugin):
     """Evaluate a simple arithmetic expression."""
 
-    supported_stages = [WorkflowExecutor.DO]
+    supported_stages = [DO]
 
     async def _execute_impl(self, context) -> str:  # noqa: D401
         expr = context.message or "0"

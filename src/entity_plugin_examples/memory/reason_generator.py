@@ -1,13 +1,13 @@
 from __future__ import annotations
 
 from entity.plugins.prompt import PromptPlugin
-from entity.workflow.executor import WorkflowExecutor
+from entity.workflow.stages import THINK
 
 
 class ReasonGenerator(PromptPlugin):
     """Generate reasoning about the extracted keywords."""
 
-    supported_stages = [WorkflowExecutor.THINK]
+    supported_stages = [THINK]
 
     async def _execute_impl(self, context) -> str:  # noqa: D401
         keywords = await context.recall("keywords", [])

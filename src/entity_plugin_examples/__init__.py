@@ -1,16 +1,18 @@
 """Entity Plugin Examples - Example plugins for the Entity Framework.
 
-This package contains example plugins demonstrating various Entity Framework features.
+This package contains example plugins organized by category:
+- core/: Fundamental concepts and patterns
+- tools/: DO stage plugins for specific tasks
+- memory/: Memory and state management patterns
+- patterns/: Architectural patterns and approaches
+- specialized/: Domain-specific examples (future)
 """
 
-# Import all plugins from their modules
-from .calculator import Calculator as CalculatorPlugin
-from .input_reader import InputReader as InputReaderPlugin
-from .keyword_extractor import KeywordExtractor as KeywordExtractorPlugin
-from .output_formatter import OutputFormatter as OutputFormatterPlugin
-from .reason_generator import ReasonGenerator as ReasonGeneratorPlugin
-from .static_reviewer import StaticReviewer as StaticReviewerPlugin
-from .typed_example_plugin import TypedExamplePlugin
+# Import all plugins from their organized subdirectories
+from .core import InputReaderPlugin, TypedExamplePlugin
+from .memory import KeywordExtractorPlugin, ReasonGeneratorPlugin
+from .patterns import StaticReviewerPlugin
+from .tools import CalculatorPlugin, OutputFormatterPlugin
 
 __all__ = [
     "CalculatorPlugin",
