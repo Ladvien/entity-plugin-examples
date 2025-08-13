@@ -33,6 +33,79 @@ def test_instant_agent_structure():
     assert callable(InstantAgentExample.run)
 
 
+def test_story_7_requirements():
+    """Test Story 7: Simplify Getting Started Experience requirements."""
+    import inspect
+    from entity_plugin_examples.core.instant_agent import InstantAgentExample
+    
+    # Check that run method exists (3-line example)
+    assert hasattr(InstantAgentExample, 'run')
+    assert callable(InstantAgentExample.run)
+    
+    # Check method signature for async
+    run_method = getattr(InstantAgentExample, 'run')
+    assert inspect.iscoroutinefunction(run_method)
+    
+    # Check docstring mentions Story 7 requirements
+    docstring = InstantAgentExample.run.__doc__ or ""
+    assert "3-line" in docstring.lower() or "3 lines" in docstring.lower()
+    
+    # Check that demo method provides next steps
+    assert hasattr(InstantAgentExample, 'demo')
+    demo_docstring = InstantAgentExample.demo.__doc__ or ""
+    assert "demo" in demo_docstring.lower() or "extended" in demo_docstring.lower()
+
+
+def test_story_7_inline_comments():
+    """Test that Story 7 shows output inline as comments."""
+    import inspect
+    from entity_plugin_examples.core.instant_agent import InstantAgentExample
+    
+    # Get source code of the run method
+    source = inspect.getsource(InstantAgentExample.run)
+    
+    # Should contain inline comments showing expected output
+    assert "# \"Hi! How can I help?\"" in source or "# This appears immediately" in source
+    
+    # Should show the 3-line pattern clearly
+    assert "agent = Agent()" in source
+    assert "await agent.chat(" in source
+
+
+def test_story_7_zero_configuration():
+    """Test that Story 7 requires no configuration files."""
+    import inspect
+    from entity_plugin_examples.core.instant_agent import InstantAgentExample
+    
+    # Get source code
+    source = inspect.getsource(InstantAgentExample.run)
+    
+    # Should use Agent() without parameters (zero configuration)
+    assert "Agent()" in source
+    
+    # Should not reference config files, settings, etc.
+    forbidden_terms = ["config", "settings", "yaml", "json", "toml", ".env"]
+    for term in forbidden_terms:
+        assert term not in source.lower()
+
+
+def test_story_7_next_steps_guidance():
+    """Test that Story 7 provides clear next steps."""
+    from entity_plugin_examples.core.instant_agent import InstantAgentExample
+    import inspect
+    
+    # Check if there's guidance to next example
+    source = inspect.getsource(InstantAgentExample)
+    docstring = InstantAgentExample.__doc__ or ""
+    
+    # Should mention next steps or reference see_the_pipeline
+    next_step_indicators = ["next", "see_the_pipeline", "pipeline", "step"]
+    has_next_steps = any(indicator in source.lower() or indicator in docstring.lower() 
+                        for indicator in next_step_indicators)
+    
+    assert has_next_steps, "Story 7 should provide clear next steps to second example"
+
+
 def test_pipeline_visualizer_structure():
     """Test Layer 1: PipelineVisualizer has correct structure."""
     from entity_plugin_examples.core.see_the_pipeline import (
