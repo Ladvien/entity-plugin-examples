@@ -7,6 +7,6 @@ Shows the resource layers:
 4. Plugins (Use tools to implement behavior)
 """
 
-from .layer_explorer import LayerExplorerExample
+from .layer_explorer import LayerExplorerExample, ResourceExplorerPlugin
 
-__all__ = ["LayerExplorerExample"]
+__all__ = ["LayerExplorerExample", "ResourceExplorerPlugin"]

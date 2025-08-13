@@ -6,6 +6,22 @@ Shows how to create and use named workflow templates:
 - AnalysisWorkflow: Data analysis agent
 """
 
-from .workflow_templates import WorkflowTemplatesExample
+from .workflow_templates import (
+    WorkflowTemplatesExample,
+    ChatPlugin,
+    ToolPlugin,
+    AnalysisPlugin,
+    create_chat_workflow,
+    create_tool_workflow,
+    create_analysis_workflow
+)
 
-__all__ = ["WorkflowTemplatesExample"]
+__all__ = [
+    "WorkflowTemplatesExample",
+    "ChatPlugin",
+    "ToolPlugin", 
+    "AnalysisPlugin",
+    "create_chat_workflow",
+    "create_tool_workflow",
+    "create_analysis_workflow"
+]

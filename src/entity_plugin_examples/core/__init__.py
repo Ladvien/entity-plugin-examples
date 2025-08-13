@@ -12,7 +12,7 @@ from .first_plugin import FirstPluginExample, MyFirstPlugin
 from .input_reader import InputReader as InputReaderPlugin
 from .instant_agent import InstantAgentExample
 from .see_the_layers import LayerExplorerExample
-from .see_the_pipeline import PipelineVisualizerExample
+from .see_the_pipeline import PipelineVisualizerExample, VisibilityPlugin
 from .typed_example_plugin import TypedExamplePlugin
 from .workflow_templates import WorkflowTemplatesExample
 
@@ -22,7 +22,8 @@ __all__ = [
     "TypedExamplePlugin",
     # Progressive examples (Layer 0 → 1 → 2)
     "InstantAgentExample",
-    "PipelineVisualizerExample", 
+    "PipelineVisualizerExample",
+    "VisibilityPlugin",
     "LayerExplorerExample",
     "WorkflowTemplatesExample",
     "FirstPluginExample",
